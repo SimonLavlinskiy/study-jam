@@ -24,7 +24,6 @@ class User extends BaseEntity
     public string $email;
 
     #[ORM\Column]
-    #[Groups([self::GET_USER, self::GET_USER_OBJ, self::SET_USER])]
     public string $password;
 
 }
