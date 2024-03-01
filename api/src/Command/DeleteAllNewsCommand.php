@@ -40,7 +40,7 @@ class DeleteAllNewsCommand extends Command
                 return Command::FAILURE;
             }
         }else{
-             $io->info("Вы отменили удалениe.");
+             $io->info("Вы отменили действие.");
             return Command::INVALID;
         }
     }
