@@ -2,6 +2,9 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Common\Filter\SearchFilterInterface;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
@@ -24,6 +27,12 @@ use Symfony\Component\Serializer\Attribute\Groups;
     denormalizationContext: ['groups' => [self::SET_NEWS]],
 )]
 #[ORM\Entity]
+#[ApiFilter(
+    SearchFilter::class,
+    properties: [
+        'user.id' => SearchFilterInterface::STRATEGY_PARTIAL,
+    ]
+)]
 class News extends BaseEntity
 {
 
