@@ -4,7 +4,10 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use App\Controller\User\CreateUser;
 use App\Controller\User\DeleteUser;
 use Doctrine\ORM\Mapping as ORM;
@@ -13,9 +16,12 @@ use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ApiResource(
     operations: [
+        new Get(),
         new Post(
             controller: CreateUser::class
         ),
+        new GetCollection(),
+        new Put(),
         new Delete(
             controller: DeleteUser::class
         )
@@ -47,8 +53,8 @@ class User extends BaseEntity
         return $this->password;
     }
 
-    public function setPassword(): void{
-
+    public function setPassword($password): void{
+        $this->password = $password;
     }
 
 }
